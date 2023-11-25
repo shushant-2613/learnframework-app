@@ -13,9 +13,11 @@ class CommentTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $comment = new Comment();
-        $comment->commentcontent = "Commented on first post";
-        $comment->post_id = 1;
-        $comment->save();
+        // $comment = new Comment();
+        // $comment->commentcontent = "Commented on first post";
+        // $comment->post_id = 1;
+        // $comment->save();
+
+        Comment::factory()->count(5)->create();
     }
 }

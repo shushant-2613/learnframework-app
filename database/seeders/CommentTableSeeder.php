@@ -15,6 +15,7 @@ class CommentTableSeeder extends Seeder
     {
         $comment = new Comment();
         $comment->commentcontent = "Commented on first post";
+        $comment->post_id = 1;
         $comment->save();
     }
 }

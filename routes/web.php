@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/post/{content}', function ($content) {
+Route::get('/post/{content?}', function ($content = null) {
     return view('post', ['content' => $content]);
 });
 

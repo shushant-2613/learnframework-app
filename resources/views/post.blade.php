@@ -1,5 +1,5 @@
 <p>
 
-    The post content is {{ $animal }}
+    The post content is {{ $content }}
 
 </p>

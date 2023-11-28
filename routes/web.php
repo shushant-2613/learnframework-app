@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/post/{content?}', function ($content = null) {
-    return view('post', ['content' => $content]);
-});
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+
+//Store route is used to store the data in database.
+Route::post('/posts', [PostController::class, 'store']);
 
 Route::get('/', function () {
     return view('welcome');

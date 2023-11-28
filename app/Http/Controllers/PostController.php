@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -12,7 +12,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::all();
+        $posts = Post::orderBy('updated_at','DESC')->paginate();
+        return view('posts.index')->withPosts($posts);
+        // return view('posts.index');
     }
 
     /**
@@ -28,10 +31,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         $postInput = new Post;
         $postInput->postcontent = $request->postcontent;
-        $postInput->save();
 
+        //Below code is to handle the exception, which may occur during the image upload.
+        $imagePath = null;
+
+        if($request->hasFile('image')){
+            $imagePath = $request->file('image')->store('images/posts', 'public');
+        }
+        else{
+            $imagePath = null;
+        }
+
+        $postInput->image = $imagePath;  
+        $postInput->save();
+        return redirect('/posts');
     }
 
     /**

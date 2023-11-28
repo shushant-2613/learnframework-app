@@ -13,6 +13,22 @@
 
 
 <body>
+
+        @foreach($posts as $post)
+            <div class="flex flex-col bg-white rounded-lg items-center overflow-hidden shadow-md w-full max-w-md mb-4">
+                <div class="mb-4">
+                    {{ $post->postcontent }}</p>
+                </div>
+
+                <!-- Post Image -->
+                <div class="flex flex-col items-center mb-4">
+                    @if($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="flex flex-col items-center w-4/12 h-auto rounded">
+                    @endif
+                </div>
+
+            @endforeach
+
         <div class="col-start-4 w-full max-w-xs absolute top-0 right-0 p-4 pt-25">
             <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
 
@@ -22,6 +38,10 @@
                         Post
                     </label>
                     <textarea name="postcontent" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Type here to post"></textarea>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <input type="file" name="image">
                     </div>
 
                     <div class="flex items-center justify-between">

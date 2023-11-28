@@ -30,6 +30,17 @@
             @endforeach
 
         <div class="col-start-4 w-full max-w-xs absolute top-0 right-0 p-4 pt-25">
+            
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="max-w-screen-xl bg-purple mx-auto p-4 list-disc pl-4 text-red-500">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
             <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
 
                     @csrf

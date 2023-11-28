@@ -31,10 +31,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'postcontent' => 'required|max:250',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust file types and size as needed
-        ]);
 
         $postInput = new Post;
         $postInput->postcontent = $request->postcontent;

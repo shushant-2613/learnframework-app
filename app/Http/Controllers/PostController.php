@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Auth;
 
 class PostController extends Controller
 {
@@ -38,6 +39,9 @@ class PostController extends Controller
 
         $postInput = new Post;
         $postInput->postcontent = $request->postcontent;
+
+        //Below code is to get the current logged in user id from the database.
+        $postInput->user_id = Auth::User()->id;
 
         //Below code is to handle the exception, which may occur during the image upload.
         $imagePath = null;

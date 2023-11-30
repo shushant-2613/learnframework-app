@@ -17,6 +17,6 @@ class PostTableSeeder extends Seeder
         // $post->postcontent = "My first post";
         // $post->save();
 
-        Post::factory()->count(5)->create();
+        // Post::factory()->count(5)->create();
     }
 }

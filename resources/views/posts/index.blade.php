@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="panel-footer break-line">
-                                    <a href="" class="text-xs btn btn-link orange-400">Edit</a>
+                                    <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="text-xs btn btn-link orange-400">Edit</a>
                                     <a href="" class="text-xs btn btn-link">Comment</a>
                             </div>
                         </div>

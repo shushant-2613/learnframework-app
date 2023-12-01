@@ -71,7 +71,9 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -79,7 +81,28 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validateData = $request->validate([
+            'postcontent' => 'required|max:250',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust file types and size as needed
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        $imagePath = null;
+
+        if($request->hasFile('image')){
+                $imagePath = $request->file('image')->store('images/posts', 'public');
+            }
+        else{
+            $imagePath = null;
+        }
+        //dd($imagePath);
+        $post->update([
+            'postcontent' => $request->input('postcontent'),
+            'image' => $imagePath,
+        ]);
+        
+        return redirect()->route('posts.index');
     }
 
     /**

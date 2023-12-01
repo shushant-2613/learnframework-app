@@ -16,12 +16,19 @@ use App\Http\Controllers\AllPostsController;
 |
 */
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
-
+//It is used to show all user posts
 Route::get('/allposts', [AllPostsController::class, 'index'])->name('allposts.index');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
 
 //Store route is used to store the data in database.
 Route::post('/posts', [PostController::class, 'store']);
+
+
+Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+
+Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+
 
 Route::get('/', function () {
     return view('welcome');

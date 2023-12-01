@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    @extends('layouts.app')
     @vite('resources/css/app.css')
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     
@@ -11,11 +11,12 @@
 </head>
 
 
-
+@section('content')
 <body>
 
+    <div class="container relative justify-center pt-16">
         <div class="flex flex-col items-center min-h-screen ">
-                    @foreach($posts as $post)
+                    @foreach(Auth::user()->posts as $post)
                         <div class="flex flex-col bg-white rounded-lg items-center overflow-hidden shadow-md w-full max-w-md mb-4">
                             <div class="mb-4">
                                 <p class="text-gray-700">Created by {{ $post->user->name }}</p>
@@ -69,8 +70,10 @@
                         </form>
                     </div>
         </div>
-</body>
 
+    </div>
+</body>
+@endsection
 
 
 </html>

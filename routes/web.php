@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AllPostsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,7 @@ use App\Http\Controllers\PostController;
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
 
+Route::get('/allposts', [AllPostsController::class, 'index'])->name('allposts.index');
 
 //Store route is used to store the data in database.
 Route::post('/posts', [PostController::class, 'store']);

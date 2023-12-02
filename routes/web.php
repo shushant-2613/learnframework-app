@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AllPostsController;
+use App\Http\Controllers\CommentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +21,17 @@ use App\Http\Controllers\AllPostsController;
 //It is used to show all user posts
 Route::get('/allposts', [AllPostsController::class, 'index'])->name('allposts.index');
 
+Route::get('/comments/create/{postid}', [CommentController::class, 'create'])->name('comments.create');
+
+Route::post('/comments/store/{postid}', [CommentController::class, 'store'])->name('comments.store');
+
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
 
 //Store route is used to store the data in database.
 Route::post('/posts', [PostController::class, 'store']);
 
 
-Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
 
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
 

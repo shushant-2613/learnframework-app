@@ -32,7 +32,21 @@
 
                             <div class="panel-footer break-line">
                                     <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="text-xs btn btn-link orange-400">Edit</a>
-                                    <a href="" class="text-xs btn btn-link">Comment</a>
+                                    <a href="{{ route('comments.create', ['postid' => $post->id]) }}" class="text-xs btn btn-link">Comment</a>
+                            </div>
+
+                            <!-- Comments Section -->
+                            <div>
+                                <h2 class="text-lg font-semibold mb-2">Comments</h2>
+                                <ul>
+                                    <!-- Single Comment -->
+                                    @foreach($post->comments as $comment)
+                                    <li class="flex items-center mb-2">
+                                        <span class="text-gray-700">{{ $comment->user->name }} said: {{ $comment->commentcontent }}</span>
+                                    </li>
+                                    @endforeach
+                                    <!-- Repeat for more comments -->
+                                </ul>
                             </div>
                         </div>
                     @endforeach

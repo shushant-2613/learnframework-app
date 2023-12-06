@@ -13,7 +13,7 @@ class AllPostsController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $posts = Post::orderBy('updated_at','DESC')->paginate();
+        $posts = Post::orderBy('created_at','DESC')->paginate(6);
         return view('allposts.index', compact('posts'));
     }
 

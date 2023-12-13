@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AllPostsController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+
+
 
 
 /*
@@ -17,6 +21,9 @@ use App\Http\Controllers\CommentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
 
 //It is used to show all user posts
 Route::get('/allposts', [AllPostsController::class, 'index'])->name('allposts.index');
@@ -35,6 +42,12 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edi
 
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
 
+
+Route::get('/home', [HomeController::class, 'index']);
+
+Route::get('/homePage/{name?}', function($name = null){ 
+    return view('homePage', ['name' => $name]);
+});
 
 Route::get('/', function () {
     return view('welcome');

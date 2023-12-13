@@ -72,8 +72,9 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
-
+        
         return view('posts.edit', compact('post'));
+        
     }
 
     /**
@@ -102,7 +103,14 @@ class PostController extends Controller
             'image' => $imagePath,
         ]);
         
-        return redirect()->route('posts.index');
+        $userType = Auth::User()->usertype;
+
+        if($userType == 'admin'){
+           return redirect()->route('admin.index'); 
+        }
+        else{
+            return redirect()->route('posts.index');
+        }
     }
 
     /**

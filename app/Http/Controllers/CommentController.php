@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\User;
 use Auth;
 
 class CommentController extends Controller
@@ -45,7 +46,14 @@ class CommentController extends Controller
 
         $post->comments()->save($comment);
 
-        return redirect()->route('posts.index');
+        $userType = Auth::User()->usertype;
+
+        if($userType == 'admin'){
+           return redirect()->route('admin.index'); 
+        }
+        else{
+           return redirect()->route('posts.index');
+        }
 
 
     }

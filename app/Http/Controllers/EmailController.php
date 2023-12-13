@@ -3,18 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
-class AllPostsController extends Controller
+class EmailController extends Controller
 {
+
+    public function sendEmail(Request $request, $id)
+    {
+        $user = User::find($id);
+        $email = $user->email;
+
+        //$userEmail = 'example@example.com'; // Replace with the recipient's email address
+
+    Mail::raw('Hello! This is a simple text email.', function ($message) use ($email) {
+    $message->to($email)
+            ->subject('Subject of the Email');
+        });
+
+        // Mail::to($email)->send("Hello");
+        // return response()->json(['success' => true]);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::all();
-        $posts = Post::orderBy('created_at','DESC')->paginate(2);
-        return view('allposts.index', compact('posts'));
+        
     }
 
     /**

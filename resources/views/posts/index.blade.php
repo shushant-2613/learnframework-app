@@ -12,37 +12,37 @@
 
 
 @section('content')
-<body>
+<body class="bg-gray-100">
 
     <div class="container relative justify-center pt-16">
         <div class="flex flex-col items-center min-h-screen ">
                     @foreach(Auth::user()->posts as $post)
-                        <div class="flex flex-col bg-white rounded-lg items-center overflow-hidden shadow-md w-full max-w-md mb-4">
+                        <div class="border border-gray-300 flex flex-col bg-gray-100 rounded-lg items-center overflow-hidden shadow-md w-full max-w-md mb-4">
                             <div class="mb-4">
-                                <p class="text-gray-700">Created by {{ $post->user->name }}</p>
-                                {{ $post->postcontent }}</p>
+                                <p class="font-semibold text-gray-700">Created by {{ $post->user->name }}</p>
+                                <p>{{ $post->postcontent }}</p>
                             </div>
 
                             <!-- Post Image -->
                             <div class="flex flex-col items-center mb-4">
                                 @if($post->image)
-                                <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="flex flex-col items-center w-4/12 h-auto rounded">
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="flex flex-col items-center w-12/12 h-auto rounded">
                                 @endif
                             </div>
 
-                            <div class="panel-footer break-line">
-                                    <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="text-xs btn btn-link orange-400">Edit</a>
-                                    <a href="{{ route('comments.create', ['postid' => $post->id]) }}" class="text-xs btn btn-link">Comment</a>
+                            <div class="panel-footer break-line ">
+                                    <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit</a>
+                                    <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('comments.create', ['postid' => $post->id]) }}" >Comment</a>
                             </div>
 
                             <!-- Comments Section -->
                             <div>
-                                <h2 class="text-lg font-semibold mb-2">Comments</h2>
+                                <h2 class="justify-left text-lg font-semibold mb-1">Comments</h2>
                                 <ul>
                                     <!-- Single Comment -->
                                     @foreach($post->comments as $comment)
                                     <li class="flex items-center mb-2">
-                                        <span class="text-gray-700">{{ $comment->user->name }} said: {{ $comment->commentcontent }}</span>
+                                        <span class="font-bold text-gray-700">{{ $comment->user->name }} said: {{ $comment->commentcontent }}</span>
                                     </li>
                                     @endforeach
                                     <!-- Repeat for more comments -->
@@ -54,16 +54,6 @@
 
                     <div class="col-start-4 w-full max-w-xs absolute top-0 right-0 p-4 pt-25">
                         
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul class="max-w-screen-xl bg-purple mx-auto p-4 list-disc pl-4 text-red-500">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
                         <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
 
                                 @csrf
@@ -84,7 +74,7 @@
                         </form>
                     </div>
         </div>
-
+        
     </div>
 </body>
 @endsection

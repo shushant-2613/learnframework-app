@@ -7,6 +7,9 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\User;
 use Auth;
+use Notification;
+use App\Notifications\SendEmailNotification;
+
 
 class CommentController extends Controller
 {
@@ -15,8 +18,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,11 +37,7 @@ class CommentController extends Controller
     public function store(Request $request, $postId)
     {
         $post = Post::findOrFail($postId);
-
-        // $request->validate([
-        //     'commentcontent' => 'required',
-        // ]);
-
+        
         $comment = new Comment([
             'commentcontent' => $request->input('commentcontent'),
         ]);
@@ -52,9 +52,11 @@ class CommentController extends Controller
            return redirect()->route('admin.index'); 
         }
         else{
-           return redirect()->route('posts.index');
+            
+            $a = $post->user->email;
+            return redirect('/send/'.$a);
+            //redirect()->route('posts.index'); 
         }
-
 
     }
 

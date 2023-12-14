@@ -7,6 +7,7 @@ use App\Http\Controllers\AllPostsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmailController;
 
 
 
@@ -34,9 +35,9 @@ Route::post('/comments/store/{postid}', [CommentController::class, 'store'])->na
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
 
-//Store route is used to store the data in database.
 Route::post('/posts', [PostController::class, 'store']);
 
+Route::get('/send/{email}', [HomeController::class, "sendnotification"]);
 
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
 

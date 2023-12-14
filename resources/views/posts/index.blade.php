@@ -19,7 +19,8 @@
                     @foreach(Auth::user()->posts as $post)
                         <div class="border border-gray-300 flex flex-col bg-gray-100 rounded-lg items-center overflow-hidden shadow-md w-full max-w-md mb-4">
                             <div class="mb-4">
-                                <p class="font-semibold text-gray-700">Created by {{ $post->user->name }}</p>
+                                <p class="font-semibold text-gray-700">Created by </p>
+                                <a href="{{ route('userprofile.index') }}">{{ $post->user->name }}</a>
                                 <p>{{ $post->postcontent }}</p>
                             </div>
 
@@ -30,6 +31,8 @@
                                 @endif
                             </div>
 
+
+                            
                             <div class="panel-footer break-line ">
                                     <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit</a>
                                     <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('comments.index', ['id' => $post->id]) }}" >Comment</a>

@@ -8,20 +8,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\UserProfileController;
 
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
@@ -46,6 +34,8 @@ Route::get('/send/{email}', [HomeController::class, "sendnotification"]);
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
 
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+
+Route::get('/userprofile', [UserProfileController::class, 'index'])->name('userprofile.index');
 
 
 Route::get('/home', [HomeController::class, 'index']);

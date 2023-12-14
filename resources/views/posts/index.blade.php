@@ -32,7 +32,7 @@
 
                             <div class="panel-footer break-line ">
                                     <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit</a>
-                                    <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('comments.create', ['postid' => $post->id]) }}" >Comment</a>
+                                    <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('comments.index', ['id' => $post->id]) }}" >Comment</a>
                             </div>
 
                             <!-- Comments Section -->

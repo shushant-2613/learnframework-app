@@ -31,7 +31,11 @@ Route::get('/allposts', [AllPostsController::class, 'index'])->name('allposts.in
 
 Route::get('/comments/create/{postid}', [CommentController::class, 'create'])->name('comments.create');
 
-Route::post('/comments/store/{postid}', [CommentController::class, 'store'])->name('comments.store');
+//Route::post('/comments/store/{postid}', [CommentController::class, 'store'])->name('comments.store');
+
+Route::get('/comments/{id}', [CommentController::class, 'index'])->name('comments.index');
+
+Route::post('/comments', [CommentController::class, 'store']);
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
 

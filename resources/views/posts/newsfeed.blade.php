@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,6 @@
     
     <title>Document</title>
 </head>
-
-
 @section('content')
 <body class="bg-gray-100">
 
@@ -19,7 +17,8 @@
                     @foreach(Auth::user()->posts as $post)
                         <div class="border border-gray-300 flex flex-col bg-gray-100 rounded-lg items-center overflow-hidden shadow-md w-full max-w-md mb-4">
                             <div class="mb-4">
-                                <p class="font-semibold text-gray-700">Created by {{ $post->user->name }}</p>
+                                <p class="font-semibold text-gray-700">Created by </p>
+                                <a href="{{ route('userprofile.index') }}">{{ $post->user->name }}</a>
                                 <p>{{ $post->postcontent }}</p>
                             </div>
 
@@ -29,8 +28,6 @@
                                 <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="flex flex-col items-center w-12/12 h-auto rounded">
                                 @endif
                             </div>
-
-
                             
                             <div class="panel-footer break-line ">
                                     <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit</a>
@@ -56,7 +53,7 @@
 
                     <div class="col-start-4 w-full max-w-xs absolute top-0 right-0 p-4 pt-25">
                         
-                        <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+                        <form method="post" action="route('posts.index')" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
 
                                 @csrf
                                 <div class="mb-4">
@@ -80,6 +77,4 @@
     </div>
 </body>
 @endsection
-
-
 </html>

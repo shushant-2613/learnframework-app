@@ -117,6 +117,8 @@
                         '</span>' +
                         '</li>');
 
+                        console.log(data);
+
                         // Clear the textarea after successful submission
                          $('textarea[name=commentcontent]').val('');
                     }

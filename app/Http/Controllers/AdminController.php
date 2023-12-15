@@ -12,7 +12,7 @@ class AdminController extends Controller
         // $posts = Post::with('comments.user')->get();
         // return view('admin.index', compact('posts'));
 
-        $posts = Post::with('comments.user')->get()->paginate(2);
+        $posts = Post::with('comments.user')->get();
         return view('admin.index', compact('posts'));
     }
 }

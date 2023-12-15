@@ -104,13 +104,13 @@
                                     @if($post->user_id === auth()->id())
                                     <div class="panel-footer break-line">
                                         <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2 mb-5" href="{{ route('posts.edit', ['id' => $post->id]) }}" class="text-xs btn btn-link orange-400">Edit</a>
-                                        <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2 mb-5" href="{{ route('comments.create', ['postid' => $post->id]) }}" class="text-xs btn btn-link">Comment</a>
+                                        <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2 mb-5" href="{{ route('comments.index', ['id' => $post->id]) }}" class="text-xs btn btn-link">Comment</a>
                                     </div>
 
                                 @else 
                                     <div class="panel-footer break-line">
                                         <!-- <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="text-xs btn btn-link orange-400">Edit</a> -->
-                                        <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('comments.create', ['postid' => $post->id]) }}" class="text-xs btn btn-link">Comment</a>
+                                        <a class="hover:text-blue-700 bg-green-400 text-white py-0.5 px-4 rounded hover:no-underline p-2 md:p-2" href="{{ route('comments.index', ['id' => $post->id]) }}" class="text-xs btn btn-link">Comment</a>
                                     </div>
                                 @endif
                                 </div>
